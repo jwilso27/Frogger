@@ -1,0 +1,105 @@
+CSE 20211: Final Project
+Frogger
+Sara Cunningham and Jenna Wilson
+
+User:
+When the user runs the program, they are greated by a green screen.  From there,
+they can press 'q' to exit the program.  Otherwise, any input (i.e., mouse click
+or keyboard entry) will begin Frogger.  The game begins at level one and the player
+beigns with five lives.  The frog begins on the bottom row of grass and the user
+must use the arror keys to safely navigate the frog to the lillypads at the top.
+Grass is safe,pavement is safe, pavement is safe, and logs and turtles are safe.
+Note the top line of grass in not safe.  Only the lillypads within the grass are.
+The frog will die if he falls in the water or is hit by a truck.  If the frog is
+killed, the frog will move back to the start and the player will loose one life. If
+the frog makes it to the lillypad, the frog will move back to the start and the level
+will increase.  As the level increses, the speed of the moving objects increases.
+If the player completes all five levels, then he won and the "YOU WIN" screen is
+displayed.  From this screen, the user can either play again or quit the program.
+If the player uses up all five lives, the "GAME OVER" screen is displayed.  Again,
+this screen, the user can eitehr play again or quit the program.  Have fun!
+
+Project Requirements:
+    in C - yup!
+    must complie and run on Linux machines in lab - works!
+    divided into multiple functions - we have 13 that are either called in main or called within eachother
+    use arrarys - we have a 2D array of ints as the board that is continuously checked for the health of the frog
+   		 also have 1D array of ints as the starting positon of trucks, logs, cars, and turtles
+    use strings - we print multiple strings to the graphics window to display level and directions
+   		 used num2str function to be able to display numeric value of level on graphics window
+    use pointers - the board and the position of the frog are passed as pointers through functions to be updated
+    complexity - definitely spent quite a bit of time of this if you can't tell by the length and awesome graphics
+    explanation - ask us!
+    
+
+Internal:
+-included stdio.h, math.h, unstid.h, and gfx3.c to accomplish necessary tasks
+-defined PI
+-have global variables height and width taht define size of graphcis window
+-13 prototypes of functions
+-in main
+    -defined variables for lives, levels, the board, graphics parameters, and ones to iterate loops
+    -board is initalized to account for sports that are always safe or dead
+    -graphics window opened
+    -welcome function called to begin game
+    -while loop to continue game function until player presses 'q' on one of the function pages
+   	 -background function called to draw background
+   	 -draw_lives function called to draw lives player still has (golden coin in bottom left hand corner)
+   	 -drawfrog function called to draw frog in current position (note the frogs eyes move accordingly)
+   	 -draw function called to draw and move the trucks, logs, turtles, and cars
+   	 -if statment if user has input arrow key direction for frog movement
+   		 -hopper function called to move position of frog accordingly
+   	 -swith statment calls the current position of the frog relative to the board
+   		 -case 0: (this is a place where the frog is not allowed to be)
+   			 -the user loses a life
+   			 -the postion of the frog is reset to the beginning     
+   			 -if statement checks to see if you are out of lives (i.e. lives=0)
+   				 -if you are dead the game over screen is displayed
+   				 -lives and levels reset if you decide to play another game
+   		 -case 1:(this is a place where the frog is allowed to be
+   			 -nothing is here because the game simply continues as is
+   		 -case 2: (this is a lillypad) YOU WON!
+   			 -increases the level    
+   			 -if the level is incremented past 5
+   				 -you won screen displayed
+   				 -lives and level and postion of frog reset if you decide to play the game again
+-in background
+    -this function prints the water, grass, and street each time
+    -also prints instructs and the level passed
+    -accomplished using switch statments and many calls of gfx_fill_rectangle
+    -prints the level using call to num2str function in gfx_text
+    -prints all other strings using gfx_text
+
+-in blood, welcome, and win (all essentially the same just different colors and letters)
+    -clears screen to produce solid background color
+    -many calls to gfx_fill_rectangle to create block arcade font
+    -gfx_text called to print instructions
+    -retuns char from gfx_wait
+   	 -'q' to quit
+   	 -anything else play
+
+-draw_lives
+    -calls gfx_ellipse several times to output the number of gold circles corresponding the number of remaining lives
+    
+-drawfrog
+    -draws frog and eyes using nested for loops of gfx_ellipes
+    -direciton is taken into account to correctly display the way the frog is looking
+
+-drawlog, drawturtle, drawtruck, and drawcar
+    -draws object using gfx_fill_rectangle and gfx_ellipse
+    -animates using varying dx
+    -size and number of can be changed
+
+-num2str
+    -given by Ramzi in previous lab
+    -converst number to string so that variable can be used in gfx_text
+
+-hopper
+    -moves the frog according to which arrow key was pushed
+    -keeps frog inbounds
+    
+Verification:
+How do you verify a video game?  You play it a million times and procrastinate studying
+for finals! We allowed Froggy to be hit by trucks and drown in water, but we also
+led Froggy to safety.  This allowed us to check all scenarios. Be warned, it moves fast and
+is not the easiest to get through all five levels.
