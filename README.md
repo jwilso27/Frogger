@@ -29,7 +29,6 @@ Mac with X11 (Dependent on location of X11 library):
 
 ```
 make mac
-
 make clean
 ```
 
