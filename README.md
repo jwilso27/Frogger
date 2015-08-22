@@ -12,25 +12,27 @@ This program requires the stdio.h, math.h, and unstid.h C libraries as well as X
 
 ####Clone
 
-'''
+```
 git clone https://github.com/jwilso27/Frogger.git
-'''
+```
 
 ####Compile
 
 Linux:
 
-'''
+```
 make linux
+
 make clean
-'''
+```
 
 Mac with X11 (Dependent on location of X11 library):
 
-'''
+```
 make mac
+
 make clean
-'''
+```
 
 ##Bugs
 
