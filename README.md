@@ -22,7 +22,6 @@ Linux:
 
 ```
 make linux
-
 make clean
 ```
 
